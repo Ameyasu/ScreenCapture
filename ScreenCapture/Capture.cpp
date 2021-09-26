@@ -16,26 +16,26 @@ Capture::~Capture()
 	destroyCapBuf();
 }
 
-void Capture::createCapBuf(int xSize, int ySize)
+bool Capture::createCapBuf(int xSize, int ySize)
 {
 	destroyCapBuf();
 
 	if (xSize <= 0 || ySize <= 0)
 	{
-		return;
+		return false;
 	}
 
 	HDC hDeskDC = GetDC(nullptr);
 	if (hDeskDC == nullptr)
 	{
-		return;
+		return false;
 	}
 
 	m_hCapDC = CreateCompatibleDC(hDeskDC);
 	if (m_hCapDC == nullptr)
 	{
 		ReleaseDC(nullptr, hDeskDC);
-		return;
+		return false;
 	}
 
 	HBITMAP hBmp = createDIBBuf(xSize, ySize);
@@ -44,7 +44,7 @@ void Capture::createCapBuf(int xSize, int ySize)
 		DeleteDC(m_hCapDC);
 		m_hCapDC = nullptr;
 		ReleaseDC(nullptr, hDeskDC);
-		return;
+		return false;
 	}
 
 	BITMAP bmp = {};
@@ -55,6 +55,8 @@ void Capture::createCapBuf(int xSize, int ySize)
 	ReleaseDC(nullptr, hDeskDC);
 	m_capXSize = xSize;
 	m_capYSize = ySize;
+
+	return true;
 }
 
 void Capture::destroyCapBuf()
