@@ -17,7 +17,5 @@
 - C++
 - Windows 10 Home (21H1)
 ## 参考サイト
-- http://eternalwindows.jp/index.html
-  - http://eternalwindows.jp/graphics/bitmap/bitmap10.html
-- https://docs.microsoft.com/ja-jp/windows/win32/
-  - https://docs.microsoft.com/ja-jp/windows/win32/winmsg/wm-size
+- http://eternalwindows.jp/graphics/bitmap/bitmap10.html
+- https://docs.microsoft.com/ja-jp/windows/win32/winmsg/wm-size
